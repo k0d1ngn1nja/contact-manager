@@ -13,10 +13,17 @@ class Contacts extends Component{
 		}
 	}
 
+	deleteContact = (id) =>{
+		const { contacts } = this.state;
+		const new_contacts = contacts.filter(contact => contact.id !== id);
+
+		this.setState({contacts: new_contacts});
+	}
+
 	render(){
 		const { contacts } = this.state;
 		let temp_contacts = contacts.map(contact =>{
-			return (<Contact key={contact.id} contact={contact} />)
+			return (<Contact key={contact.id} contact={contact} deleteClickHandler={() => this.deleteContact(contact.id)} />)
 		});
 
 		return(
