@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Contacts from "./Contacts/Contacts";
-import Header from "../component/Navigation/Header";
+import AddContact from "./Contact/AddContact";
+import Header from "../component/Layouts/Navigation/Header";
 import {Provider} from "./context";
 import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
@@ -12,7 +13,12 @@ class App extends Component {
 	      <div className="App">
 	      	<Header branding="Contact Manager" />
 	      	<div className="container">
-						<Contacts />
+	      		<div className="row">
+		      		<div className="col-md-9">
+								<AddContact />
+								<Contacts />
+		      		</div>
+	      		</div>
 	        </div>
 	      </div>
 	    </Provider>
