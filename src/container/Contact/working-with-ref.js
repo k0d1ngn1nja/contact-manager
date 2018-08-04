@@ -3,10 +3,18 @@ import PropTypes from "prop-types";
 import { Consumer } from "../context";
 
 class AddContact extends Component{
-	state = {
-		name: "",
-		email: "",
-		phone: ""
+	constructor(props){
+		super(props);
+
+		this.nameInput = React.createRef();
+		this.emailInput = React.createRef();
+		this.phoneInput = React.createRef();
+	}
+
+	static defaultProps = {
+		name: "Default Name",
+		email: "default@gmail.com",
+		phone: "000-111-2345"
 	}
 
 	onInputChange = (e) => this.setState({
@@ -15,11 +23,18 @@ class AddContact extends Component{
 
 	onFormSubmit = (e) =>{
 		e.preventDefault();
-		console.log(this.state);
+		const contact = {
+			name: this.nameInput.current.value,
+			email: this.emailInput.current.value,
+			phone: this.phoneInput.current.value
+		}
+
+		console.log(contact);
 	};
 
 	render(){
-		const {name, email, phone} = this.state;
+		const {name, email, phone} = this.props;
+
 		return(
 			<div className="card mb-3">
 				<div className="card-header">Add Contact</div>
@@ -32,8 +47,8 @@ class AddContact extends Component{
 								className="form-control form-control-lg"
 								placeholder="Enter Name..."
 								name="name"
-								value={name}
-								onChange={this.onInputChange}
+								defaultValue={name}
+								ref={this.nameInput}
 							/>
 						</div>
 
@@ -44,8 +59,8 @@ class AddContact extends Component{
 								className="form-control form-control-lg"
 								placeholder="Enter Email..."
 								name="email"
-								value={email}
-								onChange={this.onInputChange}
+								ref={this.emailInput}
+								defaultValue={email}
 							/>
 						</div>
 
@@ -56,8 +71,8 @@ class AddContact extends Component{
 								className="form-control form-control-lg"
 								placeholder="Enter Phone Number..."
 								name="phone"
-								value={phone}
-								onChange={this.onInputChange}
+								ref={this.phoneInput}
+								defaultValue={phone}
 							/>
 						</div>
 						<input type="submit" value="Add Contact" className="btn btn-block btn-primary" />
