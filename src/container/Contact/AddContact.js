@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import UUID from "uuid";
+import TextInput from "../../component/Layouts/Form/TextInput";
 import { Consumer } from "../context";
 
 class AddContact extends Component{
@@ -40,41 +40,30 @@ class AddContact extends Component{
 							<div className="card-header">Add Contact</div>
 							<div className="card-body">
 								<form onSubmit={(e) => this.onFormSubmit(dispatch, e)}>
-									<div className="form-group">
-										<label htmlFor="name">Name</label>
-										<input 
-											type="text" 
-											className="form-control form-control-lg"
-											placeholder="Enter Name..."
-											name="name"
-											value={name}
-											onChange={this.onInputChange}
-										/>
-									</div>
+									<TextInput 
+										label="Name"
+										placeholder="Enter Name..."
+										name="name"
+										value={name}
+										onChange={this.onInputChange}
+									/>
 
-									<div className="form-group">
-										<label htmlFor="email">Email</label>
-										<input 
-											type="email" 
-											className="form-control form-control-lg"
-											placeholder="Enter Email..."
-											name="email"
-											value={email}
-											onChange={this.onInputChange}
-										/>
-									</div>
+									<TextInput 
+										label="Email"
+										type="email"
+										placeholder="Enter Email..."
+										name="email"
+										value={email}
+										onChange={this.onInputChange}
+									/>
 
-									<div className="form-group">
-										<label htmlFor="phone">Phone</label>
-										<input 
-											type="text" 
-											className="form-control form-control-lg"
-											placeholder="Enter Phone Number..."
-											name="phone"
-											value={phone}
-											onChange={this.onInputChange}
-										/>
-									</div>
+									<TextInput 
+										label="Phone"
+										placeholder="Enter Phone..."
+										name="phone"
+										value={phone}
+										onChange={this.onInputChange}
+									/>
 									<input type="submit" value="Add Contact" className="btn btn-block btn-primary" />
 								</form>
 							</div>
@@ -85,7 +74,5 @@ class AddContact extends Component{
 		);
 	}
 }
-
-AddContact.propTypes = {};
 
 export default AddContact;
