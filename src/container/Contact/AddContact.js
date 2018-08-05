@@ -47,7 +47,9 @@ class AddContact extends Component{
 			email: "",
 			phone: "",
 			errors: {}
-		})
+		});
+
+		this.props.history.push("/"); //redirect
 	};
 
 	render(){

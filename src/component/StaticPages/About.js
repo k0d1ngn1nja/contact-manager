@@ -1,9 +1,10 @@
 import React from "react";
 
-const About = () =>{
+const About = (props) =>{
 	return(
 		<div>
 			<h1 className="display-4">About Contact Manager</h1>
+			<h4>Params value gotten from url: <span>{props.match.params.id}</span></h4>
 			<p className="lead">Simple Contact Manager App.</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio illo, voluptas sit quos laborum nisi fuga corporis quis accusamus similique amet eveniet, excepturi alias nesciunt qui error ad tempore repellendus veniam asperiores, mollitia ipsum minus. Neque veniam velit nesciunt possimus corporis enim commodi, aliquid iusto ratione nulla eos fuga minima, at ut asperiores, distinctio quis praesentium quo dicta ea a.</p>
 
