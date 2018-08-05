@@ -16,13 +16,13 @@ class AddContact extends Component{
 		[e.target.name]: e.target.value
 	});
 
-	onFormSubmit = (dispatch, e) =>{
+	onFormSubmit = async (dispatch, e) =>{
 		e.preventDefault();
 		const { name, email, phone } = this.state;
 		const _newContact = {name, email, phone};
 
-		axios.post("https://jsonplaceholder.typicode.com/users", _newContact).then((res) => dispatch({type: 'Add_Contact', payload: res.data});)
-		
+		const res = await axios.post("https://jsonplaceholder.typicode.com/users", _newContact);
+		dispatch({type: 'Add_Contact', payload: res.data});
 		
 		if(name === ""){
 			this.setState({errors:{
