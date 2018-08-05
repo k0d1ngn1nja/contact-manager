@@ -7,7 +7,8 @@ class AddContact extends Component{
 	state = {
 		name: "",
 		email: "",
-		phone: ""
+		phone: "",
+		errors: {}
 	}
 
 	onInputChange = (e) => this.setState({
@@ -20,16 +21,37 @@ class AddContact extends Component{
 		const _newContact = {id: UUID(), name, email, phone};
 		dispatch({type: 'Add_Contact', payload: _newContact});
 		
+		if(name === ""){
+			this.setState({errors:{
+				name: "Name is required"
+			}});
+			return;
+		}
+
+		if(email === ""){
+			this.setState({errors:{
+				email: "Email is required"
+			}});
+			return;
+		}
+
+		if(phone === ""){
+			this.setState({errors:{
+				phone: "Phone is required"
+			}});
+			return;
+		}
 		// Clear State
 		this.setState({
 			name: "",
 			email: "",
-			phone: ""
+			phone: "",
+			errors: {}
 		})
 	};
 
 	render(){
-		const {name, email, phone} = this.state;
+		const {name, email, phone, errors} = this.state;
 
 		return(
 			<Consumer>
@@ -46,6 +68,7 @@ class AddContact extends Component{
 										name="name"
 										value={name}
 										onChange={this.onInputChange}
+										error={errors.name}
 									/>
 
 									<TextInput 
@@ -55,6 +78,7 @@ class AddContact extends Component{
 										name="email"
 										value={email}
 										onChange={this.onInputChange}
+										error={errors.email}
 									/>
 
 									<TextInput 
@@ -63,6 +87,7 @@ class AddContact extends Component{
 										name="phone"
 										value={phone}
 										onChange={this.onInputChange}
+										error={errors.phone}
 									/>
 									<input type="submit" value="Add Contact" className="btn btn-block btn-primary" />
 								</form>
